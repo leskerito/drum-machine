@@ -1,14 +1,19 @@
 import React from 'react'
 import padSounds from './padSounds'
 
-function DrumPad({name}) {
+function DrumPad({name, handleDisplay}) {
+
+    function handleClick(){
+        handleDisplay(name)
+        const audio = document.getElementById(name);
+        audio.play();
+    }
 
     return (
-        <div>
-            <audio controls className="clip" id={name}>
-                <source src={padSounds[name]} type='audio/mp3'/>
-            </audio>
-        </div>
+        <button className='drum-pad' id={padSounds[name]} onClick={handleClick}>
+            {name}
+            <audio src={padSounds[name]} className="clip" id={name}></audio>
+        </button>
     )
 }
 
